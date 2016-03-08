@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>PhenoCam Installation Tool by khufkens</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">PhenoCam Installation Tool</h1>
+      <h2 class="project-tagline">a set of installation scripts needed by cameras installed by or associated with the PhenoCam network</h2>
+      <a href="https://github.com/khufkens/phenocam-installation-tool" class="btn">View on GitHub</a>
+      <a href="https://github.com/khufkens/phenocam-installation-tool/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/khufkens/phenocam-installation-tool/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="phenocam-installation-tool-pit" class="anchor" href="#phenocam-installation-tool-pit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PhenoCam Installation Tool (PIT)</h1>
+
+<p>PhenoCam Installation Tool (PIT) is a set of scripts for Linux/Mac OSX and Windows taking care of the settings as needed by cameras installed by or associated with the <a href="http://phenocam.sr.unh.edu">PhenoCam network</a>.</p>
+
+<p>Custom changes can be made to the code to suite your own needs. However, remember to save any changes twice. First by altering the configuration files you want to see changed, second by writing these changes from volatile to persistent (flash) memory using the following command:</p>
+
+<pre><code>config save
+</code></pre>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>clone the project to your home computer using the following command (with git installed)</p>
+
+<pre><code>git clone https://khufkens@bitbucket.org/khufkens/phenocam-installation-tool.git
+</code></pre>
+
+<p>alternatively, download the project using <a href="https://bitbucket.org/khufkens/phenocam-installation-tool/get/master.zip">this link</a>.</p>
+
+<p>Unzip the downloaded files or use the files cloned by git as is.</p>
+
+<h2>
+<a id="use" class="anchor" href="#use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use</h2>
+
+<p>The installation script runs within a terminal on all platforms. To open a terminal search for “Terminal” in OSX spotlight or “cmd” in the program search field (under the Start button) in Windows. For linux users I assume a familiarity with opening a terminal.</p>
+
+<p>The installation <strong>requires</strong> you to have a working internet connection on the camera! Connect to the camera when it is hooked up to either an open network or a router / hub. If you do not have an internet connection on the camera the PIT tool will <strong>not</strong> work.</p>
+
+<h3>
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows</h3>
+
+<p>On the command prompt of a terminal the scripts have the same syntax, for Windows script this would be:</p>
+
+<pre><code>PIT.bat IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT
+</code></pre>
+
+<p>You will need the telnet.exe program to be installed on your computer. As of Windows 7 this isn't installed by default anymore but can still be downloaded from the Microsoft website. Full instructions can be found <a href="http://technet.microsoft.com/en-us/library/cc771275%28v=ws.10%29.aspx">here</a>.</p>
+
+<h3>
+<a id="linux--osx" class="anchor" href="#linux--osx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Linux / OSX</h3>
+
+<p>On Linux / Mac OSX systems this would read:</p>
+
+<pre><code>sh PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT
+</code></pre>
+
+<p>or</p>
+
+<pre><code>./PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT
+</code></pre>
+
+<p>with:</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP</td>
+<td>ip address of the camera</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>user name (admin - if not set)</td>
+</tr>
+<tr>
+<td>PASSWORD</td>
+<td>user password (on a new Stardot NetCam this is admin)</td>
+</tr>
+<tr>
+<td>CAMERA</td>
+<td>the name of the camera / site</td>
+</tr>
+<tr>
+<td>TIME_OFFSET</td>
+<td>difference in hours from UTC of the timezone in which the camera resides (always use + or - signs to denote differences from UTC)</td>
+</tr>
+<tr>
+<td>TZ</td>
+<td>a text string corresponding to the local time zone (e.g. EST)</td>
+</tr>
+<tr>
+<td>CRON_START</td>
+<td>start of the scheduled image acquisitions (e.g. 4 in the morning)</td>
+</tr>
+<tr>
+<td>CRON_END</td>
+<td>end of the scheduled image acquisitions (e.g. ten at night, so 22 in 24-h notation)</td>
+</tr>
+<tr>
+<td>CRON_INT</td>
+<td>interval at which to take pictures (e.g. 15, every 15 minutes - default phenocam setting is 30)</td>
+</tr>
+</tbody>
+</table>
+
+<p>[all parameters are required!]</p>
+
+<p>An example of our in lab test camera configuration:</p>
+
+<pre><code>./PIT.sh 140.247.89.xx admin admin testcam3 -5 EST 4 22 30
+</code></pre>
+
+<p>This configures the camera 'testcam3', located in the EST time zone (UTC -5) to take images every half hour between 4 and 22h.</p>
+
+<h2>
+<a id="additional-information" class="anchor" href="#additional-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional information</h2>
+
+<p>The script will take care of any differences in model types, and will enable the upload of infrared (IR) images by default (if available). After the install be sure to check the results by browsing to the camera's IP address. You can see that the above commands have taken effect as the name and time zone offset are mentioned in the overlay on top of the image. If you are not sure about your time zone offset a visual time zone map can be found <a href="http://www.timeanddate.com/time/map/">here</a>.</p>
+
+<p>Throughout the installation procedure the command prompt gives you feedback on the process. To test a succesful install it will try to upload a set of images to the PhenoCam server. If you request a site name beforehand (the data directory has to be created on the server), we can validate if the setup is pushing data correctly right after your install.</p>
+
+<p>Critical in the operation is that you check and double check the input parameters (no checks are in place yet). Although the script will never 'brick' a camera it can push settings which make the camera not behave properly and hard to reconfigure. In such a case the configuration of the camera can be reset to factory defaults by pushing the reset button on the back of the camera using a small rod. However, if access to the site is difficult you might want to make sure you push the right settings to the camera. Furthermore, as the configuration files are pulled from the PhenoCam server, internet access is vital to configure the camera correctly, if you have only intermitted internet access on your site make sure to run the install script during this time.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/khufkens/phenocam-installation-tool">PhenoCam Installation Tool</a> is maintained by <a href="https://github.com/khufkens">khufkens</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
