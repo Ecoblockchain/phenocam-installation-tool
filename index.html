@@ -62,7 +62,7 @@
 
 <p>On the command prompt of a terminal the scripts have the same syntax, for Windows script this would be:</p>
 
-<pre><code>PIT.bat IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT
+<pre><code>PIT.bat IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE
 </code></pre>
 
 <p>You will need the telnet.exe program to be installed on your computer. As of Windows 7 this isn't installed by default anymore but can still be downloaded from the Microsoft website. Full instructions can be found <a href="http://technet.microsoft.com/en-us/library/cc771275%28v=ws.10%29.aspx">here</a>.</p>
@@ -72,12 +72,12 @@
 
 <p>On Linux / Mac OSX systems this would read:</p>
 
-<pre><code>sh PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT
+<pre><code>sh PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE
 </code></pre>
 
 <p>or</p>
 
-<pre><code>./PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT
+<pre><code>./PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE
 </code></pre>
 
 <p>with:</p>
@@ -126,15 +126,26 @@
 <td>CRON_INT</td>
 <td>interval at which to take pictures (e.g. 15, every 15 minutes - default phenocam setting is 30)</td>
 </tr>
+<tr>
+<td>FTP_MODE</td>
+<td>active or passive (can be empty, default = PASSIVE)</td>
+</tr>
 </tbody>
 </table>
 
-<p>[all parameters are required!]</p>
+<p>[all parameters but the FTP_MODE are required!]</p>
 
 <p>An example of our in lab test camera configuration:</p>
 
 <pre><code>./PIT.sh 140.247.89.xx admin admin testcam3 -5 EST 4 22 30
 </code></pre>
+
+<p>or</p>
+
+<pre><code>./PIT.sh 140.247.89.xx admin admin testcam3 -5 EST 4 22 30 active
+</code></pre>
+
+<p>for an active FTP connection (necessary for some cameras)</p>
 
 <p>This configures the camera 'testcam3', located in the EST time zone (UTC -5) to take images every half hour between 4 and 22h.</p>
 
