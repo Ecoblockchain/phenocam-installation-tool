@@ -35,16 +35,14 @@
 
 <p>Custom changes can be made to the code to suite your own needs. However, remember to save any changes twice. First by altering the configuration files you want to see changed, second by writing these changes from volatile to persistent (flash) memory using the following command:</p>
 
-<pre><code>config save
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>config save</pre></div>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>clone the project to your home computer using the following command (with git installed)</p>
 
-<pre><code>git clone https://github.com/khufkens/phenocam-installation-tool.git
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>git clone https://github.com/khufkens/phenocam-installation-tool.git</pre></div>
 
 <p>alternatively, download the project using download button.</p>
 
@@ -62,8 +60,7 @@
 
 <p>On the command prompt of a terminal the scripts have the same syntax, for Windows script this would be:</p>
 
-<pre><code>PIT.bat IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>PIT.bat IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE</pre></div>
 
 <p>You will need the telnet.exe program to be installed on your computer. As of Windows 7 this isn't installed by default anymore but can still be downloaded from the Microsoft website. Full instructions can be found <a href="http://technet.microsoft.com/en-us/library/cc771275%28v=ws.10%29.aspx">here</a>.</p>
 
@@ -72,13 +69,11 @@
 
 <p>On Linux / Mac OSX systems this would read:</p>
 
-<pre><code>sh PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>sh PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE</pre></div>
 
 <p>or</p>
 
-<pre><code>./PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>./PIT.sh IP USER PASSWORD CAMERA TIME_OFFSET TZ CRON_START CRON_END CRON_INT FTP_MODE</pre></div>
 
 <p>with:</p>
 
@@ -137,26 +132,26 @@
 
 <p>An example of our in lab test camera configuration:</p>
 
-<pre><code>./PIT.sh 140.247.89.xx admin admin testcam3 -5 EST 4 22 30
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>./PIT.sh 140.247.89.xx admin admin testcam3 -5 EST 4 22 30 passive</pre></div>
 
 <p>or</p>
 
-<pre><code>./PIT.sh 140.247.89.xx admin admin testcam3 -5 EST 4 22 30 active
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>./PIT.sh 140.247.89.xx admin admin testcam3 -5 EST 4 22 30 passive</pre></div>
 
 <p>for an active FTP connection (necessary for some cameras)</p>
 
 <p>This configures the camera 'testcam3', located in the EST time zone (UTC -5) to take images every half hour between 4 and 22h.</p>
 
 <h2>
-<a id="additional-information" class="anchor" href="#additional-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional information</h2>
+<a id="additional-information-and-settings" class="anchor" href="#additional-information-and-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional information and settings</h2>
 
 <p>The script will take care of any differences in model types, and will enable the upload of infrared (IR) images by default (if available). After the install be sure to check the results by browsing to the camera's IP address. You can see that the above commands have taken effect as the name and time zone offset are mentioned in the overlay on top of the image. If you are not sure about your time zone offset a visual time zone map can be found <a href="http://www.timeanddate.com/time/map/">here</a>.</p>
 
 <p>Throughout the installation procedure the command prompt gives you feedback on the process. To test a succesful install it will try to upload a set of images to the PhenoCam server. If you request a site name beforehand (the data directory has to be created on the server), we can validate if the setup is pushing data correctly right after your install.</p>
 
-<p>Critical in the operation is that you check and double check the input parameters (no checks are in place yet). Although the script will never 'brick' a camera it can push settings which make the camera not behave properly and hard to reconfigure. In such a case the configuration of the camera can be reset to factory defaults by pushing the reset button on the back of the camera using a small rod. However, if access to the site is difficult you might want to make sure you push the right settings to the camera. Furthermore, as the configuration files are pulled from the PhenoCam server, internet access is vital to configure the camera correctly, if you have only intermitted internet access on your site make sure to run the install script during this time.</p>
+<p>Critical in the operation is that you check and double check the input parameters (no true checks are in place). Although the script will never 'brick' a camera it can push settings which make the camera not behave properly and hard to reconfigure. In such a case the configuration of the camera can be reset to factory defaults by pushing the reset button on the back of the camera using a small rod. However, if access to the site is difficult you might want to make sure you push the right settings to the camera. Furthermore, as the configuration files are pulled from the PhenoCam server, internet access is vital to configure the camera correctly, if you have only intermitted internet access on your site make sure to run the install script during this time.</p>
+
+<p>If a backup upload is required to a different server please edit the server.txt file. Here each line represents a server address. The server layout should adhere to the PhenoCam structure, where in the ftp root directory the data is stored in ~/data/your_camera_name directory.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/khufkens">khufkens</a></p>
